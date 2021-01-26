@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-
+//here are some ready made validations. I wrote the phone number and date regexes 
+// but I copied the name and email validations from generous strangers from the internet
 
 namespace RegexValidations
 {
@@ -15,11 +16,13 @@ namespace RegexValidations
             Console.WriteLine(EmailValidation(input));
             Console.WriteLine(PhoneValidation(input));
             Console.WriteLine(DateValidation(input));
-
+            Console.WriteLine(HtmlValidation(input));
         }
 
         public static bool NameValidation(string input)
         {
+            // it looks to me like this is a last name validation, as it seems to allow for hyphens
+            //god bless visual studio for helping me to read regex
             Regex name = new Regex(@"\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+");
 
             if (name.IsMatch(input))
@@ -73,6 +76,19 @@ namespace RegexValidations
                 return false;
             }
 
+        }
+    
+        public static bool HtmlValidation(string input)
+        {
+            Regex html = new Regex(@"</?\w+((\s+\w+(\s*=\s*(?:"".*?""|'.*?'|[^'"">\s]+))?)+\s*|\s*)/?>");
+            if (html.IsMatch(input))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
