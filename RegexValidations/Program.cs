@@ -9,7 +9,8 @@ namespace RegexValidations
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Please enter your name, phone number, email address or a date");
+            Console.WriteLine("Please enter your name, phone number, email address or a date.");
+            Console.WriteLine("Weirdly, you can also enter html elements if you'd like.");
             string input = Console.ReadLine();
 
             Console.WriteLine(NameValidation(input));
@@ -21,7 +22,7 @@ namespace RegexValidations
 
         public static bool NameValidation(string input)
         {
-            // it looks to me like this is a last name validation, as it seems to allow for hyphens
+            // it looks to me like this is a last name validation, as it seems to allow for hyphens and apostrophes
             //god bless visual studio for helping me to read regex
             Regex name = new Regex(@"\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+");
 
